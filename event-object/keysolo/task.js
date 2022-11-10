@@ -24,7 +24,16 @@ class Game {
       В случае правильного ввода слова вызываем this.success()
       При неправильном вводе символа - this.fail();
      */
-  }
+      
+    document.addEventListener("keydown", e => {
+      const currentSymbol = this.currentSymbol.textContent;
+        if (currentSymbol === e.key) {
+          this.success();
+        } else {
+          this.fail();
+        }
+      });  
+    }
 
   success() {
     this.currentSymbol.classList.add('symbol_correct');
@@ -41,7 +50,7 @@ class Game {
   }
 
   fail() {
-    if (++this.lossElement.textContent === 5) {
+    if (++this.lossElement.textContent === 3) {
       alert('Вы проиграли!');
       this.reset();
     }
